@@ -9,5 +9,57 @@ package ViewModels;
  * @author ASUS
  */
 public class QLChucVu {
+    private String Id;
+    private String Ma;
+    private String Ten;
+    private String TrangThai;
+
+    public QLChucVu() {
+    }
+
+    public QLChucVu(String Id, String Ma, String Ten, String TrangThai) {
+        this.Id = Id;
+        this.Ma = Ma;
+        this.Ten = Ten;
+        this.TrangThai = TrangThai;
+    }
+
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String Id) {
+        this.Id = Id;
+    }
+
+    public String getMa() {
+        return Ma;
+    }
+
+    public void setMa(String Ma) {
+        this.Ma = Ma;
+    }
+
+    public String getTen() {
+        return Ten;
+    }
+
+    public void setTen(String Ten) {
+        this.Ten = Ten;
+    }
+
+    public String getTrangThai() {
+        return TrangThai;
+    }
+
+    public void setTrangThai(String TrangThai) {
+        this.TrangThai = TrangThai;
+    }
+
+    @Override
+    public String toString() {
+        return "QLChucVu{" + "Id=" + Id + ", Ma=" + Ma + ", Ten=" + Ten + ", TrangThai=" + TrangThai + '}';
+    }
+    
     
 }
