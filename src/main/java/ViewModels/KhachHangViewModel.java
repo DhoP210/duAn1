@@ -20,12 +20,12 @@ public class KhachHangViewModel {
     private String diaChi;
     private String  matKhau;
     private String email;
-    private String trangthai;
+    private int trangthai;
 
     public KhachHangViewModel() {
     }
 
-    public KhachHangViewModel(String id, String ma, String ten, String sdt, String gioiTinh, Date ngaySinh, String diaChi, String matKhau, String email, String trangthai) {
+    public KhachHangViewModel(String id, String ma, String ten, String sdt, String gioiTinh, Date ngaySinh, String diaChi, String matKhau, String email, int trangthai) {
         this.id = id;
         this.ma = ma;
         this.ten = ten;
@@ -110,11 +110,11 @@ public class KhachHangViewModel {
         this.email = email;
     }
 
-    public String getTrangthai() {
+    public int getTrangthai() {
         return trangthai;
     }
 
-    public void setTrangthai(String trangthai) {
+    public void setTrangthai(int trangthai) {
         this.trangthai = trangthai;
     }
 
@@ -122,6 +122,8 @@ public class KhachHangViewModel {
     public String toString() {
         return "KhachHangViewModel{" + "id=" + id + ", ma=" + ma + ", ten=" + ten + ", sdt=" + sdt + ", gioiTinh=" + gioiTinh + ", ngaySinh=" + ngaySinh + ", diaChi=" + diaChi + ", matKhau=" + matKhau + ", email=" + email + ", trangthai=" + trangthai + '}';
     }
+
+   
 
 
 }

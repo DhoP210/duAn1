@@ -32,7 +32,7 @@ public class KhachHangService implements IManageKhachHangService{
                 v.setDiaChi(khachHangViewModel.getDiaChi());
                 v.setMatKhau(khachHangViewModel.getMatKhau());
                 v.setEmail(khachHangViewModel.getEmail());
-                v.setTrangthai(String.valueOf(khachHangViewModel.getDiaChi()));
+                v.setTrangthai(Integer.valueOf(khachHangViewModel.getTrangthai()));
                 khachHang.add(v);
                 
             }
@@ -57,7 +57,7 @@ public class KhachHangService implements IManageKhachHangService{
                 v.setDiaChi(khachHangViewModel.getDiaChi());
                 v.setMatKhau(khachHangViewModel.getMatKhau());
                 v.setEmail(khachHangViewModel.getEmail());
-                v.setTrangthai(String.valueOf(khachHangViewModel.getDiaChi()));
+                v.setTrangthai(Integer.valueOf(khachHangViewModel.getTrangthai()));
                 khachHang.add(v);
                 
             }
@@ -82,7 +82,7 @@ public class KhachHangService implements IManageKhachHangService{
                 v.setDiaChi(khachHangViewModel.getDiaChi());
                 v.setMatKhau(khachHangViewModel.getMatKhau());
                 v.setEmail(khachHangViewModel.getEmail());
-                v.setTrangthai(String.valueOf(khachHangViewModel.getDiaChi()));
+                v.setTrangthai(Integer.valueOf(khachHangViewModel.getTrangthai()));
                 khachHang.add(v);
                 
             }
