@@ -70,11 +70,12 @@ public class ChatLieuView extends javax.swing.JFrame {
             txtTen.setBackground(Color.red);
             JOptionPane.showMessageDialog(this, "Trống tên");
             return false;
-        } else if (false == txtTen.getText().matches(check)) {
-            txtTen.setBackground(Color.red);
-            JOptionPane.showMessageDialog(this, "Tên không được chứa ký tự đặc biệt");
-            return false;
-        }
+        } 
+//        else if (false == txtTen.getText().matches(check)) {
+//            txtTen.setBackground(Color.red);
+//            JOptionPane.showMessageDialog(this, "Tên không được chứa ký tự đặc biệt");
+//            return false;
+//        }
         txtMa.setBackground(Color.white);
         txtTen.setBackground(Color.white);
         return true;
