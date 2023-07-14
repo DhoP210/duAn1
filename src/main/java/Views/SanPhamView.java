@@ -315,28 +315,7 @@ private  DefaultComboBoxModel dcm = new DefaultComboBoxModel();
     }//GEN-LAST:event_tblSizeMouseClicked
  
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-//
-//     SanPham sp = new SanPham();
-//
-//        sp.setMa(txtMa.getText());
-//        sp.setTen(txtTen.getText());
-//        
-//        
-//      int trangthai =0;
-//        if (cbbTrangthai.equals("Hết Hàng")) {
-//            trangthai = 0;
-//        }else if(cbbTrangthai.equals("Còn Hàng")){
-//            trangthai = 1;
-//        }
-//
-//        sp.setTrangThai(trangthai);
-//     
-//        System.out.println("Trang Thai" + trangthai);
-//
-//     
-//           String result = ssv.add(sp);
-//        JOptionPane.showMessageDialog(this, result);
-//        showData(ssv.getAll());
+
     if (checkDL()) {
             SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
             SanPham mausac = new SanPham();
