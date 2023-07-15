@@ -26,7 +26,7 @@ public class SizeView extends javax.swing.JFrame {
     public SizeView() {
         initComponents();
         setTitle("He thong quan li cua hang ban giay");
-        
+        System.out.println("");
     }
     
 //    private void table(){
@@ -82,6 +82,11 @@ public class SizeView extends javax.swing.JFrame {
         jLabel3.setText("Trang thai");
 
         btAdd.setText("Add");
+        btAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAddActionPerformed(evt);
+            }
+        });
 
         btUpdate.setText("Update");
 
@@ -167,6 +172,10 @@ public class SizeView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btAddActionPerformed
 
     /**
      * @param args the command line arguments
