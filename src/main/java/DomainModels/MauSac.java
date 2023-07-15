@@ -31,29 +31,27 @@ public class MauSac implements Serializable{
     @GenericGenerator(name = "generator", strategy = "guid", parameters = {})
     @GeneratedValue(generator = "generator")
     @Column(name = "Id", columnDefinition = "uniqueidentifier")
-    private UUID  id;
-    
-    @Column(name = "Ma")
+        
+    private String  id;
     private String ma;
-    
-    @Column(name ="Ten")
     private String ten;
-    
-    @Column(name ="TrangThai")
     private int trangThai;
 
-    public MauSac(UUID id, String ma, String ten, int trangThai) {
+    public MauSac() {
+    }
+
+    public MauSac(String id, String ma, String ten, int trangThai) {
         this.id = id;
         this.ma = ma;
         this.ten = ten;
         this.trangThai = trangThai;
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -81,16 +79,12 @@ public class MauSac implements Serializable{
         this.trangThai = trangThai;
     }
 
-    
-    
-
-//    @Override
-//    public String toString() {
-//        return "MauSac{" + "id=" + id + ", ma=" + ma + ", ten=" + ten + ", trangThai=" + trangThai + '}';
-//    }
-
-    public MauSac() {
+    @Override
+    public String toString() {
+        return "MauSac{" + "id=" + id + ", ma=" + ma + ", ten=" + ten + ", trangThai=" + trangThai + '}';
     }
+
+    
     
     
 }

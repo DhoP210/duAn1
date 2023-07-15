@@ -32,7 +32,7 @@ public class ChucVu implements Serializable{
     public ChucVu() {
     }
 
-    public ChucVu(String Id, String Ma, String TenChucVu, int TrangThai) {
+    public ChucVu(String Id, String Ma, String Ten, int TrangThai) {
         this.Id = Id;
         this.Ma = Ma;
         this.Ten = Ten;
@@ -73,8 +73,8 @@ public class ChucVu implements Serializable{
 
     @Override
     public String toString() {
-        return "ChucVu{" + "Id=" + Id + ", Ma=" + Ma + ", TenChucVu=" + Ten + ", TrangThai=" + TrangThai + '}';
+        return "ChucVu{" + "Id=" + Id + ", Ma=" + Ma + ", Ten=" + Ten + ", TrangThai=" + TrangThai + '}';
     }
-    
+
     
 }

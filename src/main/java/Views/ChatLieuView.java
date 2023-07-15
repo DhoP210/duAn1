@@ -246,7 +246,7 @@ public class ChatLieuView extends javax.swing.JFrame {
             return;
         }
         ChatLieu chatLieu = new ChatLieu();
-        chatLieu.setId(UUID.fromString(txtId.getText()));
+        chatLieu.setId(txtId.getText());
         chatLieu.setMa(txtMa.getText());
         chatLieu.setTen(txtTen.getText());
 
@@ -272,7 +272,7 @@ public class ChatLieuView extends javax.swing.JFrame {
             return;
         }
         ChatLieu chatLieu = new ChatLieu();
-        chatLieu.setId(UUID.fromString(txtId.getText()));
+        chatLieu.setId(txtId.getText());
 
         boolean delete = chatLieuService.delete(chatLieu);
         if (delete == true) {

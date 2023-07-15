@@ -5,6 +5,7 @@
 package DomainModels;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,37 +15,71 @@ import lombok.Generated;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 /**
  *
  * @author ADMIN
  */
-
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
+@Entity
 @Table(name = "NSX")
 public class NSX {
     @Id
-    @Column(name = "Id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GenericGenerator(name = "generator", strategy = "guid", parameters = {})
+    @GeneratedValue(generator = "generator")
+    @Column(name = "Id", columnDefinition = "uniqueidentifier")
     private Long id;
-    
-    
-    @Column(name = "Ma")
     private String ma;
-    
-    @Column(name ="Ten")
     private String ten;
-    
-    @Column(name ="TrangThai")
     private Integer trangThai;
+
+    public NSX() {
+    }
+
+    public NSX(Long id, String ma, String ten, Integer trangThai) {
+        this.id = id;
+        this.ma = ma;
+        this.ten = ten;
+        this.trangThai = trangThai;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getMa() {
+        return ma;
+    }
+
+    public void setMa(String ma) {
+        this.ma = ma;
+    }
+
+    public String getTen() {
+        return ten;
+    }
+
+    public void setTen(String ten) {
+        this.ten = ten;
+    }
+
+    public Integer getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(Integer trangThai) {
+        this.trangThai = trangThai;
+    }
 
     @Override
     public String toString() {
         return "NSX{" + "id=" + id + ", ma=" + ma + ", ten=" + ten + ", trangThai=" + trangThai + '}';
     }
-    
+
+   
     
 }

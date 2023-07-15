@@ -16,31 +16,71 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.GenericGenerator;
 
 /**
  *
  * @author Dell
  */
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
+
 @Entity
 @Table(name = "ChatLieu")
 public class ChatLieu {
-
     @Id
+    @GenericGenerator(name = "generator", strategy = "guid", parameters = {})
+    @GeneratedValue(generator = "generator")
     @Column(name = "Id", columnDefinition = "uniqueidentifier")
-    @GeneratedValue
-    private UUID id;
-
-    @Column(name = "Ma")
+    private String id;
     private String ma;
-
-    @Column(name = "Ten")
     private String ten;
-
-    @Column(name = "TrangThai")
     private int trangThai;
+
+    public ChatLieu() {
+    }
+
+    public ChatLieu(String id, String ma, String ten, int trangThai) {
+        this.id = id;
+        this.ma = ma;
+        this.ten = ten;
+        this.trangThai = trangThai;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getMa() {
+        return ma;
+    }
+
+    public void setMa(String ma) {
+        this.ma = ma;
+    }
+
+    public String getTen() {
+        return ten;
+    }
+
+    public void setTen(String ten) {
+        this.ten = ten;
+    }
+
+    public int getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(int trangThai) {
+        this.trangThai = trangThai;
+    }
+
+    @Override
+    public String toString() {
+        return "ChatLieu{" + "id=" + id + ", ma=" + ma + ", ten=" + ten + ", trangThai=" + trangThai + '}';
+    }
+    
+    
 }

@@ -20,12 +20,8 @@ import lombok.Setter;
  * 
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
-@Table(name = "SanPham")
 @Entity
+@Table(name = "SanPham")
 public class SanPham {
      @Id
     @Column(name = "Id", columnDefinition = "UNIQUEIDENTIFIER")
@@ -43,11 +39,53 @@ public class SanPham {
         }
     }
 
-    public SanPham(String Ma, String Ten, int TrangThai) {
+    public SanPham() {
+    }
+
+    public SanPham(UUID Id, String Ma, String Ten, int TrangThai) {
+        this.Id = Id;
         this.Ma = Ma;
         this.Ten = Ten;
         this.TrangThai = TrangThai;
     }
+
+    public UUID getId() {
+        return Id;
+    }
+
+    public void setId(UUID Id) {
+        this.Id = Id;
+    }
+
+    public String getMa() {
+        return Ma;
+    }
+
+    public void setMa(String Ma) {
+        this.Ma = Ma;
+    }
+
+    public String getTen() {
+        return Ten;
+    }
+
+    public void setTen(String Ten) {
+        this.Ten = Ten;
+    }
+
+    public int getTrangThai() {
+        return TrangThai;
+    }
+
+    public void setTrangThai(int TrangThai) {
+        this.TrangThai = TrangThai;
+    }
+
+    @Override
+    public String toString() {
+        return "SanPham{" + "Id=" + Id + ", Ma=" + Ma + ", Ten=" + Ten + ", TrangThai=" + TrangThai + '}';
+    }
+
     
 
 }
