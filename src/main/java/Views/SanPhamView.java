@@ -94,6 +94,11 @@ private  DefaultComboBoxModel dcm = new DefaultComboBoxModel();
             txtTen.setBackground(Color.red);
             JOptionPane.showMessageDialog(this, "Tên loại sản phẩm sai định dạng");
             return false;
+        }else{
+            txtTen.setBackground(Color.white);
+            txtTen.setBackground(Color.white);
+             txtMa.setBackground(Color.white);
+              txtMa.setBackground(Color.white);
         }
       
 
