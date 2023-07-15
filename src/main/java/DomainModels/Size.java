@@ -84,6 +84,11 @@ public class Size {
         this.trangThai = trangThai;
     }
 
+    @Override
+    public String toString() {
+        return "Size{" + "id=" + id + ", ma=" + ma + ", ten=" + ten + ", trangThai=" + trangThai + '}';
+    }
+
   
 
     
