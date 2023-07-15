@@ -13,19 +13,19 @@ import java.util.Date;
 public class KhuyenMaiViewModel {
     private String id;
     private String ma;
-    private String tenKhuyenMai;
+    private String ten;
     private Date ngayBatDau;
     private Date ngayKetThuc;
     private int PhanTramKM;
-    private int trangThai;
+    private String trangThai;
 
     public KhuyenMaiViewModel() {
     }
 
-    public KhuyenMaiViewModel(String id, String ma, String tenKhuyenMai, Date ngayBatDau, Date ngayKetThuc, int PhanTramKM, int trangThai) {
+    public KhuyenMaiViewModel(String id, String ma, String ten, Date ngayBatDau, Date ngayKetThuc, int PhanTramKM, String trangThai) {
         this.id = id;
         this.ma = ma;
-        this.tenKhuyenMai = tenKhuyenMai;
+        this.ten = ten;
         this.ngayBatDau = ngayBatDau;
         this.ngayKetThuc = ngayKetThuc;
         this.PhanTramKM = PhanTramKM;
@@ -48,12 +48,12 @@ public class KhuyenMaiViewModel {
         this.ma = ma;
     }
 
-    public String getTenKhuyenMai() {
-        return tenKhuyenMai;
+    public String getTen() {
+        return ten;
     }
 
-    public void setTenKhuyenMai(String tenKhuyenMai) {
-        this.tenKhuyenMai = tenKhuyenMai;
+    public void setTen(String ten) {
+        this.ten = ten;
     }
 
     public Date getNgayBatDau() {
@@ -80,18 +80,18 @@ public class KhuyenMaiViewModel {
         this.PhanTramKM = PhanTramKM;
     }
 
-    public int getTrangThai() {
+    public String getTrangThai() {
         return trangThai;
     }
 
-    public void setTrangThai(int trangThai) {
+    public void setTrangThai(String trangThai) {
         this.trangThai = trangThai;
     }
 
     @Override
     public String toString() {
-        return "KhuyenMaiViewModel{" + "id=" + id + ", ma=" + ma + ", tenKhuyenMai=" + tenKhuyenMai + ", ngayBatDau=" + ngayBatDau + ", ngayKetThuc=" + ngayKetThuc + ", PhanTramKM=" + PhanTramKM + ", trangThai=" + trangThai + '}';
+        return "KhuyenMaiViewModel{" + "id=" + id + ", ma=" + ma + ", ten=" + ten + ", ngayBatDau=" + ngayBatDau + ", ngayKetThuc=" + ngayKetThuc + ", PhanTramKM=" + PhanTramKM + ", trangThai=" + trangThai + '}';
     }
 
-    
+   
 }

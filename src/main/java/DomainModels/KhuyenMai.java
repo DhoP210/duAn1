@@ -25,19 +25,19 @@ public class KhuyenMai {
     @Column(name = "Id")
    private String Id;
     private String Ma;
-    private String TenKhuyenMai;
+    private String Ten;
     private Date NgayBatDau;
     private Date NgayKetThuc;
-    private int TrangThai;
     private int PhanTramKM;
+    private int TrangThai;
 
     public KhuyenMai() {
     }
 
-    public KhuyenMai(String Id, String Ma, String TenKhuyenMai, Date NgayBatDau, Date NgayKetThuc, int TrangThai, int PhanTramKM) {
+    public KhuyenMai(String Id, String Ma, String Ten, Date NgayBatDau, Date NgayKetThuc, int TrangThai, int PhanTramKM) {
         this.Id = Id;
         this.Ma = Ma;
-        this.TenKhuyenMai = TenKhuyenMai;
+        this.Ten = Ten;
         this.NgayBatDau = NgayBatDau;
         this.NgayKetThuc = NgayKetThuc;
         this.TrangThai = TrangThai;
@@ -60,12 +60,12 @@ public class KhuyenMai {
         this.Ma = Ma;
     }
 
-    public String getTenKhuyenMai() {
-        return TenKhuyenMai;
+    public String getTen() {
+        return Ten;
     }
 
-    public void setTenKhuyenMai(String TenKhuyenMai) {
-        this.TenKhuyenMai = TenKhuyenMai;
+    public void setTen(String Ten) {
+        this.Ten = Ten;
     }
 
     public Date getNgayBatDau() {
@@ -102,7 +102,7 @@ public class KhuyenMai {
 
     @Override
     public String toString() {
-        return "KhuyenMai{" + "Id=" + Id + ", Ma=" + Ma + ", TenKhuyenMai=" + TenKhuyenMai + ", NgayBatDau=" + NgayBatDau + ", NgayKetThuc=" + NgayKetThuc + ", TrangThai=" + TrangThai + ", PhanTramKM=" + PhanTramKM + '}';
+        return "KhuyenMai{" + "Id=" + Id + ", Ma=" + Ma + ", TenKhuyenMai=" + Ten + ", NgayBatDau=" + NgayBatDau + ", NgayKetThuc=" + NgayKetThuc + ", TrangThai=" + TrangThai + ", PhanTramKM=" + PhanTramKM + '}';
     }
 
     

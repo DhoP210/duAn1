@@ -27,10 +27,11 @@ public class KhuyenMaiService implements IManageKhuyenMaiService{
                 KhuyenMaiViewModel i = new KhuyenMaiViewModel();
                 i.setId(x.getId());
                 i.setMa(x.getMa());
-                i.setTenKhuyenMai(x.getTenKhuyenMai());
-                i.setNgayBatDau(String.valueOf(x.getNgayBatDau()));
-                i.setNgayKetThuc(String.valueOf(x.getNgayKetThuc()));
+                i.setTen(x.getTen());
+                i.setNgayBatDau(x.getNgayBatDau());
+                i.setNgayKetThuc(x.getNgayKetThuc());
                 i.setPhanTramKM(x.getPhanTramKM());
+                i.setTrangThai(String.valueOf(x.getTrangThai()));
                 khuyenMaiViewModels.add(i);
             }
             return khuyenMaiViewModels;
@@ -48,9 +49,9 @@ public class KhuyenMaiService implements IManageKhuyenMaiService{
                 KhuyenMaiViewModel i = new KhuyenMaiViewModel();
                 i.setId(x.getId());
                 i.setMa(x.getMa());
-                i.setTenKhuyenMai(x.getTenKhuyenMai());
-                i.setNgayBatDau(String.valueOf(x.getNgayBatDau()));
-                i.setNgayKetThuc(String.valueOf(x.getNgayKetThuc()));
+                i.setTen(x.getTen());
+                i.setNgayBatDau(x.getNgayBatDau());
+                i.setNgayKetThuc(x.getNgayKetThuc());
                 i.setPhanTramKM(x.getPhanTramKM());
                 khuyenMaiViewModels.add(i);
             }
@@ -69,9 +70,9 @@ public class KhuyenMaiService implements IManageKhuyenMaiService{
                 KhuyenMaiViewModel i = new KhuyenMaiViewModel();
                 i.setId(x.getId());
                 i.setMa(x.getMa());
-                i.setTenKhuyenMai(x.getTenKhuyenMai());
-                i.setNgayBatDau(String.valueOf(x.getNgayBatDau()));
-                i.setNgayKetThuc(String.valueOf(x.getNgayKetThuc()));
+                i.setTen(x.getTen());
+                i.setNgayBatDau(x.getNgayBatDau());
+                i.setNgayKetThuc(x.getNgayKetThuc());
                 i.setPhanTramKM(x.getPhanTramKM());
                 khuyenMaiViewModels.add(i);
             }
@@ -90,9 +91,9 @@ public class KhuyenMaiService implements IManageKhuyenMaiService{
                 KhuyenMaiViewModel i = new KhuyenMaiViewModel();
                 i.setId(x.getId());
                 i.setMa(x.getMa());
-                i.setTenKhuyenMai(x.getTenKhuyenMai());
-                i.setNgayBatDau(String.valueOf(x.getNgayBatDau()));
-                i.setNgayKetThuc(String.valueOf(x.getNgayKetThuc()));
+                i.setTen(x.getTen());
+                i.setNgayBatDau(x.getNgayBatDau());
+                i.setNgayKetThuc(x.getNgayKetThuc());
                 i.setPhanTramKM(x.getPhanTramKM());
                 khuyenMaiViewModels.add(i);
             }
@@ -147,9 +148,9 @@ public class KhuyenMaiService implements IManageKhuyenMaiService{
                 KhuyenMaiViewModel i = new KhuyenMaiViewModel();
                 i.setId(x.getId());
                 i.setMa(x.getMa());
-                i.setTenKhuyenMai(x.getTenKhuyenMai());
-                i.setNgayBatDau(String.valueOf(x.getNgayBatDau()));
-                i.setNgayKetThuc(String.valueOf(x.getNgayKetThuc()));
+                 i.setTen(x.getTen());
+               i.setNgayBatDau(x.getNgayBatDau());
+                i.setNgayKetThuc(x.getNgayKetThuc());
                 i.setPhanTramKM(x.getPhanTramKM());
                 khuyenMaiViewModels.add(i);
             }

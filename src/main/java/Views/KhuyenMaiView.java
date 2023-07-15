@@ -4,9 +4,19 @@
  */
 package Views;
 
+
 import DomainModels.KhuyenMai;
+import Services.KhuyenMaiService;
+import Services.impl.IManageKhuyenMaiService;
+import ViewModels.KhuyenMaiViewModel;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -14,11 +24,40 @@ import java.util.Date;
  */
 public class KhuyenMaiView extends javax.swing.JFrame {
 
+    private IManageKhuyenMaiService khuyenMaiService = new KhuyenMaiService();
+    
+     DefaultTableModel model = new DefaultTableModel();
+     
+      public void loadTBKhuyenMai() {
+        
+        model = (DefaultTableModel) tblKhuyenMai.getModel();
+        model.setColumnCount(0);
+        model.addColumn("ID");
+        model.addColumn("Mã");
+        model.addColumn("Tên");
+        model.addColumn("Ngày bắt đầu");
+        model.addColumn("Ngày kết thúc");
+        model.addColumn("phần trăm KM");
+       
+        model.setRowCount(0);
+        List<KhuyenMaiViewModel> sp = khuyenMaiService.getListKMAll();
+        for (KhuyenMaiViewModel v : sp) {
+            model.addRow(new Object[]{
+                v.getId(), v.getMa(), v.getTen(), v.getNgayBatDau(),v.getNgayKetThuc(),
+                v.getPhanTramKM()
+              
+            });
+        }
+    }
     /**
      * Creates new form KhuyenMaiView
      */
     public KhuyenMaiView() {
         initComponents();
+        
+        this.setDefaultCloseOperation(KhachHangView.DO_NOTHING_ON_CLOSE);
+        setLocationRelativeTo(null);
+        loadTBKhuyenMai();
     }
 
     /**
@@ -39,7 +78,6 @@ public class KhuyenMaiView extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         lbID = new javax.swing.JLabel();
-        lbMa = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtTen = new javax.swing.JTextField();
         DateNgayBatDau = new com.toedter.calendar.JDateChooser();
@@ -53,6 +91,7 @@ public class KhuyenMaiView extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txtTimKiem = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
+        txtMa = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -90,8 +129,6 @@ public class KhuyenMaiView extends javax.swing.JFrame {
         jLabel2.setText("Ma");
 
         lbID.setText("Id");
-
-        lbMa.setText("Ma");
 
         jLabel5.setText("Ten");
 
@@ -145,6 +182,8 @@ public class KhuyenMaiView extends javax.swing.JFrame {
 
         jLabel9.setText("Search Tên");
 
+        txtMa.setBorder(new javax.swing.border.MatteBorder(null));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -179,11 +218,11 @@ public class KhuyenMaiView extends javax.swing.JFrame {
                                 .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(116, 116, 116)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lbMa, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtMa, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -221,7 +260,7 @@ public class KhuyenMaiView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(lbMa))
+                    .addComponent(txtMa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -270,8 +309,33 @@ public class KhuyenMaiView extends javax.swing.JFrame {
 
     private void tblKhuyenMaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKhuyenMaiMouseClicked
         // TODO add your handling code here:
-        java.util.Date date = java.util.Calendar.getInstance().getTime();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        int index = tblKhuyenMai.getSelectedRow();
+
+        lbID.setText(tblKhuyenMai.getValueAt(index, 0).toString());
+        txtMa.setText(tblKhuyenMai.getValueAt(index, 1).toString());
+        txtTen.setText(tblKhuyenMai.getValueAt(index, 2).toString());
+        
+        String ngayBatDau = tblKhuyenMai.getValueAt(index, 4).toString();
+        Date batDau = null;
+        try {
+            batDau = new SimpleDateFormat("yyyy-MM-dd").parse(ngayBatDau);
+        } catch (ParseException ex) {
+            Logger.getLogger(KhuyenMaiView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        DateNgayBatDau.setDate(batDau);
+        
+        String ngayKetThuc = tblKhuyenMai.getValueAt(index, 5).toString();
+        
+        Date ketThuc = null;
+        try {
+            ketThuc = new SimpleDateFormat("yyyy-MM-dd").parse(ngayKetThuc);
+        } catch (ParseException ex) {
+            Logger.getLogger(KhuyenMaiView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        DateNgayKetThuc.setDate(ketThuc);
+        
+        CBBPhanTramKM.setSelectedItem(tblKhuyenMai.getValueAt(index, 6).toString());
+        
 
     }//GEN-LAST:event_tblKhuyenMaiMouseClicked
 
@@ -281,22 +345,65 @@ public class KhuyenMaiView extends javax.swing.JFrame {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
-        java.util.Date dateBD = DateNgayBatDau.getDate();
-        java.util.Date dateKT = DateNgayKetThuc.getDate();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        String batDau = format.format(dateBD);
-        String ketThuc = format.format(dateKT);
+        KhuyenMai kh = new KhuyenMai();
+        
+        kh.setMa(txtMa.getText());
+        kh.setTen(txtTen.getText());
+        
+        
+        
+        kh.setNgayBatDau(DateNgayBatDau.getDate());
+        kh.setNgayKetThuc(DateNgayKetThuc.getDate());
+        kh.setPhanTramKM(Integer.valueOf(CBBPhanTramKM.getSelectedItem().toString()));
+      
+        boolean b = khuyenMaiService.add(kh);
+            if (b == true) {
+                
+                JOptionPane.showMessageDialog(this, "Thêm thành công" );
+                loadTBKhuyenMai();
+            } else {
+                JOptionPane.showMessageDialog(this, "Không thêm được" );
+             }
         
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         // TODO add your handling code here:
+       KhuyenMai kh = new KhuyenMai();
+        kh.setId(lbID.getText());
+        kh.setMa(txtMa.getText());
+        kh.setTen(txtTen.getText());
+        
+      
+        kh.setNgayBatDau(DateNgayBatDau.getDate());
+        kh.setNgayKetThuc(DateNgayKetThuc.getDate());
+        kh.setPhanTramKM(Integer.valueOf(CBBPhanTramKM.getSelectedItem().toString()));
        
+            boolean b = khuyenMaiService.update(kh);
+            if (b == true) {
+                JOptionPane.showMessageDialog(this, "Sửa thành công");
+                loadTBKhuyenMai();
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Sửa thất bại");
+            }
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // TODO add your handling code here:
-        
+        KhuyenMai kh = new KhuyenMai();
+        kh.setId(lbID.getText());
+        boolean b = khuyenMaiService.delete(kh);
+
+        if (b == true) {
+            
+            JOptionPane.showMessageDialog(this, "Xóa thành công");
+            loadTBKhuyenMai();
+            
+        } else {
+            JOptionPane.showMessageDialog(this, "Xóa thất bại");
+       
+        }
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void txtTimKiemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimKiemKeyReleased
@@ -359,8 +466,8 @@ public class KhuyenMaiView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbID;
-    private javax.swing.JLabel lbMa;
     private javax.swing.JTable tblKhuyenMai;
+    private javax.swing.JTextField txtMa;
     private javax.swing.JTextField txtTen;
     private javax.swing.JTextField txtTimKiem;
     // End of variables declaration//GEN-END:variables

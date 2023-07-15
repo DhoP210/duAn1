@@ -17,10 +17,10 @@ import org.hibernate.Session;
  * @author PC
  */
 public class KhuyenMaiRepository {
-    java.util.Date date = java.util.Calendar.getInstance().getTime();
-    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-
-    String now = format.format(date);
+//    java.util.Date date = java.util.Calendar.getInstance().getTime();
+//    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+//
+//    String now = format.format(date);
 
     public List<KhuyenMai> getListKMAll() {
         try {
@@ -61,7 +61,7 @@ public class KhuyenMaiRepository {
     public List<KhuyenMai> getListKMByDate(String ten) {
         try {
             Session session = HibernateUtil.getFACTORY().openSession();
-            Query q = session.createQuery("FROM KhuyenMai WHERE TrangThai = 1 AND TenKhuyenMai like :ten ");
+            Query q = session.createQuery("FROM KhuyenMai WHERE TrangThai = 1 AND Ten like :ten ");
             q.setParameter("ten", "%" + ten + "%");
             List<KhuyenMai> list = q.getResultList();
             return list;
@@ -73,7 +73,7 @@ public class KhuyenMaiRepository {
     public List<KhuyenMai> getListKMByDateContg(String ten) {
         try {
             Session session = HibernateUtil.getFACTORY().openSession();
-            Query q = session.createQuery("FROM KhuyenMai WHERE TrangThai = 1 AND TenKhuyenMai like :ten ");
+            Query q = session.createQuery("FROM KhuyenMai WHERE TrangThai = 1 AND Ten like :ten ");
             q.setParameter("ten", "%" + ten + "%");
             KhuyenMaiRepository kmRepo = new KhuyenMaiRepository();
             List<KhuyenMai> khuyenMais = kmRepo.getListKMCon();
@@ -111,20 +111,21 @@ public class KhuyenMaiRepository {
     }
 
     public boolean add(KhuyenMai km) {
-        String getMa = String.valueOf(getMaxMa() + 1);
+//        String getMa = String.valueOf(getMaxMa() + 1);
 
         try {
             Session session = HibernateUtil.getFACTORY().openSession();
 
             KhuyenMai khuyenMai = new KhuyenMai();
-            khuyenMai.setMa(getMa);
-            khuyenMai.setTenKhuyenMai(km.getTenKhuyenMai());
-            khuyenMai.setPhanTramKM(km.getPhanTramKM());
-
-            //convert date to string Date.valueOf()
+            khuyenMai.setMa(km.getMa());
+            khuyenMai.setTen(km.getTen());
             khuyenMai.setNgayBatDau(km.getNgayBatDau());
             khuyenMai.setNgayKetThuc(km.getNgayKetThuc());
+            khuyenMai.setPhanTramKM(km.getPhanTramKM());
             khuyenMai.setTrangThai(1);
+            //convert date to string Date.valueOf()
+            
+
 
             session.getTransaction().begin();
             session.save(khuyenMai);
@@ -142,7 +143,8 @@ public class KhuyenMaiRepository {
             Session session = HibernateUtil.getFACTORY().openSession();
 
             KhuyenMai khuyenMai = session.get(KhuyenMai.class, km.getId());
-            khuyenMai.setTenKhuyenMai(km.getTenKhuyenMai());
+            khuyenMai.setTen(km.getTen());
+            khuyenMai.setMa(km.getMa());
             khuyenMai.setNgayBatDau(km.getNgayBatDau());
             khuyenMai.setNgayKetThuc(km.getNgayKetThuc());
             khuyenMai.setPhanTramKM(km.getPhanTramKM());
@@ -175,12 +177,12 @@ public class KhuyenMaiRepository {
         }
     }
 
-    public static void main(String[] args) {
-        KhuyenMaiRepository kmRepo = new KhuyenMaiRepository();
-        List<KhuyenMai> khuyenMais = kmRepo.getListKMHet();
-        for (KhuyenMai khuyenMai : khuyenMais) {
-            System.out.println(khuyenMai.toString());
-        }
-    }
+//    public static void main(String[] args) {
+//        KhuyenMaiRepository kmRepo = new KhuyenMaiRepository();
+//        List<KhuyenMai> khuyenMais = kmRepo.getListKMHet();
+//        for (KhuyenMai khuyenMai : khuyenMais) {
+//            System.out.println(khuyenMai.toString());
+//        }
+//    }
 
 }
