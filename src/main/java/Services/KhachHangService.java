@@ -22,7 +22,7 @@ public class KhachHangService implements IManageKhachHangService{
         List<KhachHang> lsp = khrp.getListKhachHang();
         try {
             List<KhachHangViewModel> khachHang = new ArrayList<>();
-            for (KhachHangViewModel khachHangViewModel : khachHang) {
+            for (KhachHang khachHangViewModel : lsp) {
                 KhachHangViewModel v = new KhachHangViewModel();
                 v.setId(khachHangViewModel.getId());
                 v.setMa(khachHangViewModel.getMa());
@@ -32,7 +32,9 @@ public class KhachHangService implements IManageKhachHangService{
                 v.setDiaChi(khachHangViewModel.getDiaChi());
                 v.setMatKhau(khachHangViewModel.getMatKhau());
                 v.setEmail(khachHangViewModel.getEmail());
-                v.setTrangthai(Integer.valueOf(khachHangViewModel.getTrangthai()));
+                v.setSdt(khachHangViewModel.getSdt());
+                
+                v.setTrangthai(Integer.valueOf(khachHangViewModel.getTrangThai()));
                 khachHang.add(v);
                 
             }
