@@ -83,5 +83,11 @@ public class LoaiSP {
         return "LoaiSP{" + "id=" + id + ", ma=" + ma + ", ten=" + ten + ", trangThai=" + trangThai + '}';
     }
 
-    
+    public String gettt(){
+        if(trangThai == 0){
+            return "Còn Hàng";
+        }else{
+           return "Hết Hàng"; 
+        }
+    }
 }

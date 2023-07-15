@@ -8,6 +8,8 @@ import DomainModels.LoaiSP;
 import Utilities.HibernateUtil;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.NoResultException;
+import javax.persistence.TypedQuery;
 import org.hibernate.query.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -17,96 +19,83 @@ import org.hibernate.Transaction;
  * @author ADMIN
  */
 public class LoaiSPRepo {
-    public List<LoaiSP> getAll(){
-         try {
-            Session se = HibernateUtil.getFACTORY().openSession(); 
-            Query q = se.createQuery("FROM LoaiSP WHERE TrangThai = 1 ");          
-            List<LoaiSP> list = q.getResultList();         
-            return list;
-        } catch (Exception e) {
-            return null;
-        }
+       Session session = HibernateUtil.getFACTORY().openSession();
+
+    public ArrayList<LoaiSP> getAllData() {
+        Query query = session.createQuery("From LoaiSP");
+        ArrayList<LoaiSP> list = (ArrayList<LoaiSP>) query.getResultList();
+        return list;
+
     }
-    
-    public LoaiSP getOne(Long id) {
+
+    public Boolean add(LoaiSP loaiSP) {
+        String check = null;
         Transaction transaction = null;
-        LoaiSP loaiSP = null;
-         try (Session session = HibernateUtil.getFACTORY().openSession() ){
+        Session session = HibernateUtil.getFACTORY().openSession();
+        try {
+            session = new HibernateUtil().getFACTORY().openSession();
             transaction = session.beginTransaction();
-            loaiSP = session.get(LoaiSP.class, id);
+            session.save(loaiSP);
             transaction.commit();
         } catch (Exception e) {
-            if(transaction !=null){
-                transaction.rollback();
-            }
+            System.out.println(e.getMessage());
         }
-         return loaiSP;
+        return true;
     }
-    
-    public boolean add(LoaiSP loaiSP) {     
-         try {
-            
-            
-            Session se = HibernateUtil.getFACTORY().openSession();
 
-            LoaiSP lsp = new LoaiSP();
-            
-            lsp.setMa(loaiSP.getMa());
-            
-            lsp.setTen(loaiSP.getTen());
-            
-            lsp.setTrangThai(1);
-
-            se.getTransaction().begin();
-            se.save(lsp);
-            se.getTransaction().commit();
-            se.close();
-            return true;
-
-        } catch (Exception e) {
-            return false;
-        }
-    }
-    
-     // Update
-    public boolean update(LoaiSP loaiSP) {
-     try {
-            Session se = HibernateUtil.getFACTORY().openSession();
-            
-            LoaiSP lsp = se.get(LoaiSP.class, loaiSP.getId());
-            
-            lsp.setMa(loaiSP.getMa());
-            lsp.setTen(loaiSP.getTen());        
-            lsp.setTrangThai(1);
-            se.getTransaction().begin();
-            se.save(lsp);
-            se.getTransaction().commit();
-            se.close();
-            return true;
-
-        } catch (Exception e) {
-            return false;
-        }
-    }
-    
-    
-     public boolean delete(LoaiSP loaiSP) {
+    public Boolean Update(LoaiSP loaiSP) {
+        String check = null;
+        Transaction transaction = null;
+        Session session = HibernateUtil.getFACTORY().openSession();
         try {
-            Session se = HibernateUtil.getFACTORY().openSession();
-            
-            LoaiSP lsp = se.get(LoaiSP.class, loaiSP.getId());
-            
-            lsp.setTrangThai(0);
-
-            se.getTransaction().begin();
-            se.save(lsp);
-            se.getTransaction().commit();
-            se.close();
-            return true;
-
+            session = new HibernateUtil().getFACTORY().openSession();
+            transaction = session.beginTransaction();
+            session.saveOrUpdate(loaiSP);
+            transaction.commit();
         } catch (Exception e) {
-            return false;
+            System.out.println(e.getMessage());
         }
+        return true;
+    }
+
+    public Boolean delete(String ma) {
+        Session session = HibernateUtil.getFACTORY().openSession();
+        session = HibernateUtil.getFACTORY().openSession();
+        Transaction transaction = session.getTransaction();
+        transaction.begin();
+        try {
+            String hql = "delete LoaiSP where ma=:ma";
+            Query qr = session.createQuery(hql);
+            qr.setParameter("ma", ma);
+            qr.executeUpdate();
+            transaction.commit();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return true;
+
+    }
+
+    public LoaiSP checkTrungID(String id) {
+        LoaiSP loaiSP = null;
+        Session session = HibernateUtil.getFACTORY().openSession();
+        javax.persistence.Query q = session.createQuery("FROM LoaiSP WHERE id = :id");
+        q.setParameter("id", id);
+        try {
+            loaiSP = (LoaiSP) q.getSingleResult();
+        } catch (NoResultException noResultException) {
+            return null;
+        }
+        return loaiSP;
+    }
+    public List<String> listcbbloaisp() {
+        ArrayList<String> list = new ArrayList<>();
+        try (Session s = HibernateUtil.getFACTORY().openSession()) {
+            String hql = "Select LoaiSP.ten from LoaiSP LoaiSP";
+            TypedQuery<String> query = s.createQuery(hql, String.class);
+            list = (ArrayList<String>) query.getResultList();
+        }
+        return list;
     }
 
 }

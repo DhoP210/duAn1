@@ -13,11 +13,14 @@ import java.util.List;
  * @author ADMIN
  */
 public interface LoaiSPImpl {
-    List<QLLoaiSP> getAll();
+       public List<LoaiSP> loadData();
 
-    boolean add(LoaiSP loaiSP);
+    public String ADD(LoaiSP loaiSP);
 
-    boolean update(LoaiSP loaiSP);
+    public String update(LoaiSP loaiSP);
 
-    boolean delete(LoaiSP loaiSP);
+    public String Delete(String ma);
+    
+    public List<String> listcbbloaisp();
+    
 }
