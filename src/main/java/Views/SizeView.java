@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.swing.DefaultComboBoxModel;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -27,6 +28,7 @@ import javax.swing.table.DefaultTableModel;
 public class SizeView extends javax.swing.JFrame {
 
     private DefaultTableModel dtm = new DefaultTableModel();
+    private  DefaultComboBoxModel dcm = new DefaultComboBoxModel();
     List<Size> listSz = new ArrayList<>();
  
     SizeImpl ssv = new SizeService();
@@ -38,6 +40,9 @@ public class SizeView extends javax.swing.JFrame {
         loadTable();
         setTitle("Hệ Thống Quản Lý  Bán Giày TTN");
         txtid.disable();
+        cbx();
+        
+        table();
     }
     private void table() {
           tblSize.setModel(dtm);
@@ -52,10 +57,9 @@ public class SizeView extends javax.swing.JFrame {
         dtm.setRowCount(0);
         for (Size size : list) {
             dtm.addRow(new Object[]{
-               size.getId(),
+                size.getId(),
                 size.getMa(),
                 size.getTen(),
-                
                 size.trangThai()
                
                         
@@ -93,6 +97,14 @@ public class SizeView extends javax.swing.JFrame {
       
 
         return true;
+    }
+        private void cbx() {
+        cbbTrangthai.removeAllItems();
+        dcm.addElement("Còn Hàng");
+        dcm.addElement("Hết Hàng");
+        cbbTrangthai.setModel(dcm);
+        cbbTrangthai.getModel();
+
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -298,16 +310,15 @@ public class SizeView extends javax.swing.JFrame {
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
 
         if (checkDL()) {
-            SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+          
             Size sz = new Size();
             sz.setMa(txtMa.getText());
             sz.setTen(txtTen.getText());
-            
             sz.setTrangThai(cbbTrangthai.getSelectedIndex());
-         
             String result = ssv.add(sz);
             JOptionPane.showMessageDialog(this, result);
             showData(ssv.getAll());
+            
         }
 
     }//GEN-LAST:event_btnThemActionPerformed
