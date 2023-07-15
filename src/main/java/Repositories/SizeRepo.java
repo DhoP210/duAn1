@@ -5,6 +5,7 @@
 package Repositories;
 
 import DomainModels.MauSac;
+import DomainModels.SanPham;
 import DomainModels.Size;
 import Utilities.HibernateUtil;
 import java.util.ArrayList;
@@ -21,86 +22,81 @@ import org.hibernate.Transaction;
 public class SizeRepo {
   
     
-    public List<Size> getAll(){
-       try {
-            Session session = HibernateUtil.getFACTORY().openSession(); //Ket noi DB thuc hien hien truy van
-            org.hibernate.query.Query q = session.createQuery("FROM Size WHERE TrangThai = 1  order by ma "); //Tao cau truy van lay du lieu tu bang dong go
-            List<Size> list = q.getResultList();
-            return list;
-        } catch (Exception e) {
-            return null;
-        }
-    }
-    
-    
-    public boolean add(Size size){
-        try {
-            Session ss = HibernateUtil.getFACTORY().openSession();
-            Size s = new Size();
-            s.setMa(size.getMa());
-            s.setTen(size.getTen());         
-            s.setTrangThai(1);
+  Session session = HibernateUtil.getFACTORY().openSession();
 
-            ss.getTransaction().begin();
-            ss.save(s);
-            ss.getTransaction().commit();
-            ss.close();
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+    public ArrayList<Size> getAll() {
+        Query query = session.createQuery(
+                "FROM Size ");
+
+        ArrayList<Size> list = (ArrayList<Size>) query.getResultList();
+        return list;
     }
-    
-    public boolean getMa(String ma){
-         for (Size size : getAll()) {
+
+    public String add(Size sp) {
+        String check;
+        Transaction transaction = null;
+        try {
+            session = HibernateUtil.getFACTORY().openSession();
+            transaction = session.beginTransaction();
+            session.save(sp);
+            check = "Add thành công";
+            transaction.commit();
+        } catch (Exception e) {
+            check = "Add thất bại";
+        }
+        return check;
+    }
+
+    public boolean getMa(String ma) {
+        for (Size size : getAll()) {
             if (ma.equalsIgnoreCase(size.getMa())) {
                 return true;
             }
         }
         return false;
     }
-    
-    public boolean update(String id,Size size){
-         try {
-            Session ss = HibernateUtil.getFACTORY().openSession();
-            Size s = ss.get(Size.class, size.getId());
-            s.setMa(size.getMa());
-            s.setTen(size.getTen());         
-            s.setTrangThai(1);
 
-            ss.getTransaction().begin();
-            ss.saveOrUpdate(s);
-            ss.getTransaction().commit();
-            ss.close();
-            return true;
+    public String update(Size sp) {
+        String check;
+        Transaction transaction = null;
+        try {
+            session = HibernateUtil.getFACTORY().openSession();
+            transaction = session.beginTransaction();
+            session.saveOrUpdate(sp);
+            check = "Update thành công";
+            transaction.commit();
         } catch (Exception e) {
-            return false;
+            check = "Update thất bại";
         }
+        return check;
     }
-    
-    
-    public String delete(String id){
-         Session session = HibernateUtil.getFACTORY().openSession();
+
+    public String delete(String ma) {
+
         session = HibernateUtil.getFACTORY().openSession();
         Transaction transaction = session.getTransaction();
         transaction.begin();
         try {
             String hql = "delete Size where ma=:ma";
             Query qr = session.createQuery(hql);
-            qr.setParameter("id", id);
+            qr.setParameter("ma", ma);
             qr.executeUpdate();
+//                   if (serult==0) {
+//                       
+//                   }
             transaction.commit();
             return "Xóa thành công";
         } catch (Exception e) {
 
         }
         return "Xóa thất bại";
+
     }
-    
-     public List<String> listcbbsize() {
+
+    public List<String> listcbbsize() {
         ArrayList<String> list = new ArrayList<>();
         try ( Session s = HibernateUtil.getFACTORY().openSession()) {
-            String hql = "Select Size.size from Size Size";
+            String hql = "Select SanPham.sanpham from SanPham SanPham";
             TypedQuery<String> query = s.createQuery(hql, String.class);
             list = (ArrayList<String>) query.getResultList();
         }

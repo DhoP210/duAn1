@@ -4,6 +4,7 @@
  */
 package Services.impl;
 
+import DomainModels.SanPham;
 import DomainModels.Size;
 import java.util.List;
 
@@ -12,13 +13,13 @@ import java.util.List;
  * @author ADMIN
  */
 public interface SizeImpl {
-        List<Size> getAll();
+        public List<Size> getAll();
 
-    boolean getMa(String ma);
+    String add(Size sp);
 
-    boolean add(Size size);
-    
-    boolean update( String id,Size size);
-    
-    String delete(String id);
+    String update(Size sp);
+
+    String delete(String ma);
+
+    public List<String> listcbbsize();
 }
