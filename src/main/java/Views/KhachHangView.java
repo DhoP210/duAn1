@@ -8,9 +8,12 @@ import DomainModels.KhachHang;
 import Services.KhachHangService;
 import Services.impl.IManageKhachHangService;
 import ViewModels.KhachHangViewModel;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -413,7 +416,12 @@ public class KhachHangView extends javax.swing.JFrame {
             rdoNu.setSelected(true);
         }
         String ngaySinh = tblKhachHang.getValueAt(index, 4).toString();
-        Date date = new SimpleDateFormat("yyyy-MM-dd").parse(ngaySinh);
+        Date date = null;
+        try {
+            date = new SimpleDateFormat("yyyy-MM-dd").parse(ngaySinh);
+        } catch (ParseException ex) {
+            Logger.getLogger(KhachHangView.class.getName()).log(Level.SEVERE, null, ex);
+        }
         DateNgaySinh.setDate(date);
         txtDiaChi.setText(tblKhachHang.getValueAt(index, 5).toString());
         passMatKhau.setText(tblKhachHang.getValueAt(index, 6).toString());

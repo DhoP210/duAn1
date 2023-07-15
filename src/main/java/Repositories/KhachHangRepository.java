@@ -129,6 +129,7 @@ public class KhachHangRepository {
         try {
             Session ss = HibernateUtil.getFACTORY().openSession();
             KhachHang khss = ss.get(KhachHang.class, kh.getId());
+            khss.setMa(kh.getMa());
             khss.setTen(kh.getTen());
             khss.setGioiTinh(kh.getGioiTinh());
             khss.setNgaySinh(kh.getNgaySinh());
