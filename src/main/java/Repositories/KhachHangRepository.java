@@ -9,6 +9,7 @@ import Utilities.HibernateUtil;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 /**
  *
@@ -18,7 +19,7 @@ public class KhachHangRepository {
     public List<KhachHang> getListKhachHang() {
         try {
             Session session = HibernateUtil.getFACTORY().openSession(); //Ket noi DB thuc hien hien truy van
-            org.hibernate.query.Query q = session.createQuery("FROM KhachHang WHERE TrangThai = 1  order by ma "); //Tao cau truy van lay du lieu tu bang dong go
+             Query q = session.createQuery("FROM KhachHang WHERE TrangThai = 1 ");; //Tao cau truy van lay du lieu tu bang dong go
             List<KhachHang> list = q.getResultList();
             return list;
         } catch (Exception e) {
@@ -76,17 +77,18 @@ public class KhachHangRepository {
     }
 
     public boolean add(KhachHang kh) {
-        String getMa = String.valueOf(getMaxMa() + 1);
+//        String getMa = String.valueOf(getMaxMa() + 1);
         try {
             Session ss = HibernateUtil.getFACTORY().openSession();
             KhachHang lsp = new KhachHang();
-            lsp.setMa(getMa);
+            lsp.setMa(kh.getMa());
             lsp.setTen(kh.getTen());
             lsp.setGioiTinh(kh.getGioiTinh());
             lsp.setNgaySinh(kh.getNgaySinh());
             lsp.setDiaChi(kh.getDiaChi());
             lsp.setMatKhau(kh.getMatKhau());
             lsp.setEmail(kh.getEmail());
+            lsp.setSdt(kh.getSdt());
             lsp.setTrangThai(1);
 
             ss.getTransaction().begin();
