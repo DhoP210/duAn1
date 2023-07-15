@@ -280,13 +280,16 @@ public class KhuyenMaiView extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(8, 8, 8)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(DateNgayKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(DateNgayKetThuc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel7)))))
                     .addComponent(DateNgayBatDau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        DateNgayBatDau.getAccessibleContext().setAccessibleName("");
+        DateNgayBatDau.getAccessibleContext().setAccessibleDescription("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -315,7 +318,7 @@ public class KhuyenMaiView extends javax.swing.JFrame {
         txtMa.setText(tblKhuyenMai.getValueAt(index, 1).toString());
         txtTen.setText(tblKhuyenMai.getValueAt(index, 2).toString());
         
-        String ngayBatDau = tblKhuyenMai.getValueAt(index, 4).toString();
+        String ngayBatDau = tblKhuyenMai.getValueAt(index, 3).toString();
         Date batDau = null;
         try {
             batDau = new SimpleDateFormat("yyyy-MM-dd").parse(ngayBatDau);
@@ -324,7 +327,7 @@ public class KhuyenMaiView extends javax.swing.JFrame {
         }
         DateNgayBatDau.setDate(batDau);
         
-        String ngayKetThuc = tblKhuyenMai.getValueAt(index, 5).toString();
+        String ngayKetThuc = tblKhuyenMai.getValueAt(index, 4).toString();
         
         Date ketThuc = null;
         try {
@@ -334,7 +337,7 @@ public class KhuyenMaiView extends javax.swing.JFrame {
         }
         DateNgayKetThuc.setDate(ketThuc);
         
-        CBBPhanTramKM.setSelectedItem(tblKhuyenMai.getValueAt(index, 6).toString());
+        CBBPhanTramKM.setSelectedItem(tblKhuyenMai.getValueAt(index, 5).toString());
         
 
     }//GEN-LAST:event_tblKhuyenMaiMouseClicked
