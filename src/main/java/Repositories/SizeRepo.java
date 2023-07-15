@@ -60,7 +60,7 @@ public class SizeRepo {
         return false;
     }
     
-    public boolean update(Size size){
+    public boolean update(String id,Size size){
          try {
             Session ss = HibernateUtil.getFACTORY().openSession();
             Size s = ss.get(Size.class, size.getId());
@@ -79,7 +79,7 @@ public class SizeRepo {
     }
     
     
-    public String delete(String ma){
+    public String delete(String id){
          Session session = HibernateUtil.getFACTORY().openSession();
         session = HibernateUtil.getFACTORY().openSession();
         Transaction transaction = session.getTransaction();
@@ -87,7 +87,7 @@ public class SizeRepo {
         try {
             String hql = "delete Size where ma=:ma";
             Query qr = session.createQuery(hql);
-            qr.setParameter("ma", ma);
+            qr.setParameter("id", id);
             qr.executeUpdate();
             transaction.commit();
             return "Xóa thành công";

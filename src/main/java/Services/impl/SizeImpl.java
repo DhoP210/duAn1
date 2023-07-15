@@ -4,10 +4,21 @@
  */
 package Services.impl;
 
+import DomainModels.Size;
+import java.util.List;
+
 /**
  *
  * @author ADMIN
  */
 public interface SizeImpl {
+        List<Size> getAll();
+
+    boolean getMa(String ma);
+
+    boolean add(Size size);
     
+    boolean update( String id,Size size);
+    
+    String delete(String id);
 }

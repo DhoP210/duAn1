@@ -43,18 +43,18 @@ public class SizeService implements SizeImpl{
     }
 
     @Override
-    public boolean update(Size size) {
+    public boolean update(String id,Size size) {
         try {
-            return sizeRepo.update(size);
+            return sizeRepo.update(id, size);
         } catch (Exception e) {
             return false;
         }
     }
 
     @Override
-    public String delete(String ma) {
+    public String delete(String id) {
         try {
-            return sizeRepo.delete(ma);
+            return sizeRepo.delete(id);
         } catch (Exception e) {
             return null;
         }
