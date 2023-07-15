@@ -4,6 +4,8 @@
  */
 package ViewModels;
 
+import java.util.Date;
+
 /**
  *
  * @author PC
@@ -12,20 +14,22 @@ public class KhuyenMaiViewModel {
     private String id;
     private String ma;
     private String tenKhuyenMai;
-    private String ngayBatDau;
-    private String ngayKetThuc;
+    private Date ngayBatDau;
+    private Date ngayKetThuc;
     private int PhanTramKM;
+    private int trangThai;
 
     public KhuyenMaiViewModel() {
     }
 
-    public KhuyenMaiViewModel(String id, String ma, String tenKhuyenMai, String ngayBatDau, String ngayKetThuc, int PhanTramKM) {
+    public KhuyenMaiViewModel(String id, String ma, String tenKhuyenMai, Date ngayBatDau, Date ngayKetThuc, int PhanTramKM, int trangThai) {
         this.id = id;
         this.ma = ma;
         this.tenKhuyenMai = tenKhuyenMai;
         this.ngayBatDau = ngayBatDau;
         this.ngayKetThuc = ngayKetThuc;
         this.PhanTramKM = PhanTramKM;
+        this.trangThai = trangThai;
     }
 
     public String getId() {
@@ -52,19 +56,19 @@ public class KhuyenMaiViewModel {
         this.tenKhuyenMai = tenKhuyenMai;
     }
 
-    public String getNgayBatDau() {
+    public Date getNgayBatDau() {
         return ngayBatDau;
     }
 
-    public void setNgayBatDau(String ngayBatDau) {
+    public void setNgayBatDau(Date ngayBatDau) {
         this.ngayBatDau = ngayBatDau;
     }
 
-    public String getNgayKetThuc() {
+    public Date getNgayKetThuc() {
         return ngayKetThuc;
     }
 
-    public void setNgayKetThuc(String ngayKetThuc) {
+    public void setNgayKetThuc(Date ngayKetThuc) {
         this.ngayKetThuc = ngayKetThuc;
     }
 
@@ -76,9 +80,17 @@ public class KhuyenMaiViewModel {
         this.PhanTramKM = PhanTramKM;
     }
 
+    public int getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(int trangThai) {
+        this.trangThai = trangThai;
+    }
+
     @Override
     public String toString() {
-        return "KhuyenMaiViewModel{" + "id=" + id + ", ma=" + ma + ", tenKhuyenMai=" + tenKhuyenMai + ", ngayBatDau=" + ngayBatDau + ", ngayKetThuc=" + ngayKetThuc + ", PhanTramKM=" + PhanTramKM + '}';
+        return "KhuyenMaiViewModel{" + "id=" + id + ", ma=" + ma + ", tenKhuyenMai=" + tenKhuyenMai + ", ngayBatDau=" + ngayBatDau + ", ngayKetThuc=" + ngayKetThuc + ", PhanTramKM=" + PhanTramKM + ", trangThai=" + trangThai + '}';
     }
 
     
