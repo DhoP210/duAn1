@@ -4,25 +4,35 @@
  */
 package DomainModels;
 
+import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import org.hibernate.annotations.GenericGenerator;
 
 /**
  *
  * @author PC
  */
 public class NhanVien {
-     private String id;
+    
+    @Id
+    @GenericGenerator(name = "generator", strategy = "guid", parameters = {})
+    @GeneratedValue(generator = "generator")
+    @Column(name = "Id", columnDefinition = "uniqueidentifier")
+    private String id;
     private String ma;
     private String ten;
     private String gioiTinh;
-    private String ngaySinh;
+    private Date ngaySinh;
     private String diaChi;
     private String matKhau;
     private String email;
     
     @ManyToOne
-    @JoinColumn(name = "IdChucVu")
+    @JoinColumn(name = "IdCV")
     private ChucVu IdChucVu;
     private String sdt;
     private int trangThai;
@@ -30,7 +40,7 @@ public class NhanVien {
     public NhanVien() {
     }
 
-    public NhanVien(String id, String ma, String ten, String gioiTinh, String ngaySinh, String diaChi, String matKhau, String email, ChucVu IdChucVu, String sdt, int trangThai) {
+    public NhanVien(String id, String ma, String ten, String gioiTinh, Date ngaySinh, String diaChi, String matKhau, String email, ChucVu IdChucVu, String sdt, int trangThai) {
         this.id = id;
         this.ma = ma;
         this.ten = ten;
@@ -76,11 +86,11 @@ public class NhanVien {
         this.gioiTinh = gioiTinh;
     }
 
-    public String getNgaySinh() {
+    public Date getNgaySinh() {
         return ngaySinh;
     }
 
-    public void setNgaySinh(String ngaySinh) {
+    public void setNgaySinh(Date ngaySinh) {
         this.ngaySinh = ngaySinh;
     }
 
