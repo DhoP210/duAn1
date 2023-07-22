@@ -16,21 +16,20 @@ import org.hibernate.query.Query;
  * @author PC
  */
 public class NhanVienRepository {
-    
-    public List<NhanVien> getListNVDangLam() {
 
-        try {
-            
-            Session session = HibernateUtil.getFACTORY().openSession();
+    public List<NhanVien> getAll() {
+
+        try ( Session session = HibernateUtil.getFACTORY().openSession();) {
             Query q = session.createQuery("FROM NhanVien where TrangThai = 1");
-            List<NhanVien> list = q.getResultList();
-            return list;
+            List<NhanVien> nhanViens = q.getResultList();
+            return nhanViens;
 
         } catch (Exception e) {
-            return null;
+            e.printStackTrace();
         }
+        return null;
     }
-    
+
     public boolean add(NhanVien nv) {
 
         try {
@@ -55,7 +54,7 @@ public class NhanVienRepository {
             v.setMatKhau(nv.getMatKhau());
 
             v.setEmail(nv.getEmail());
-            
+
             v.setSdt(nv.getSdt());
 
             v.setTrangThai(1);
@@ -74,6 +73,8 @@ public class NhanVienRepository {
         }
 
     }
-    
-    
+
+    public static void main(String[] args) {
+        System.out.println(new NhanVienRepository().getAll());
+    }
 }
