@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
@@ -20,12 +22,13 @@ import org.hibernate.annotations.GenericGenerator;
  * @author ASUS
  */
 @Entity
+@Getter
+@Setter
 @Table(name = "ChiTietSP")
 public class ChiTietSP implements Serializable{
     @Id
-    @GenericGenerator(name = "generator", strategy = "guid", parameters = {})
-    @GeneratedValue(generator = "generator")
-    @Column(name = "Id", columnDefinition = "uniqueidentifier")
+    @Column(name = "Id", columnDefinition = "UNIQUEIDENTIFIER")
+    @GeneratedValue
     private String Id;
     
     @ManyToOne
@@ -186,7 +189,13 @@ public class ChiTietSP implements Serializable{
     public String toString() {
         return "ChiTietSP{" + "Id=" + Id + ", IdSanPham=" + IdSanPham + ", IdNhaSanXuat=" + IdNhaSanXuat + ", IdMauSac=" + IdMauSac + ", IdLoaiSP=" + IdLoaiSP + ", IdChatLieu=" + IdChatLieu + ", IdSize=" + IdSize + ", NamBH=" + NamBH + ", MoTa=" + MoTa + ", SoLuongTon=" + SoLuongTon + ", GiaNhap=" + GiaNhap + ", GiaBan=" + GiaBan + ", TrangThai=" + TrangThai + '}';
     }
-    
+    public String getTT(){
+        if(TrangThai == 1){
+            return "Đang Hoạt Động";
+        }else{
+            return "Đã Ngưng";
+        }
+    }
     
     
 }
